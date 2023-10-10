@@ -39,21 +39,25 @@ btn1.addEventListener("click", function () {
     const enteredlatitude = latitudeinput.value;
     
 
-const fetchforecast = () => fetch(`https://api.openweathermap.org/data/2.5/weather?q=${enteredcity},${enteredabbrevcount}&lat=${enteredlatitude}&lon=${enteredlongitude}&units=metric&lang=fr&APPID=46181bfe81ea32a25340c82f0d82c3df`);
-// const fetchName = () => fetch(`https://api.openweathermap.org/data/2.5/weather?q=${enteredcity},${enteredabbrevcount}&lat=${enteredlatitude}&lon=${enteredlongitude}&units=metric&lang=fr&APPID=${API key}`);
+const fetchforecast = () => fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${enteredcity},${enteredabbrevcount}&dt=${enteredcity}&lat=${enteredlatitude}&lon=${enteredlongitude}&units=metric&lang=fr&APPID=46181bfe81ea32a25340c82f0d82c3df`);
+// const fetchforecast = () => fetch(`https://api.openweathermap.org/data/2.5/weather?q=${enteredcity},${enteredabbrevcount}&lat=${enteredlatitude}&lon=${enteredlongitude}&units=metric&lang=fr&APPID=46181bfe81ea32a25340c82f0d82c3df`);
+// const fetchforecast = () => fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${enteredcity},${enteredabbrevcount}&lat=${enteredlatitude}&lon=${enteredlongitude}&units=metric&lang=fr&APPID=${API key}`);
 fetchforecast()
     .then((response) => response.json())
     .then((location) => {        
         console.log(location);
-        
-        let timestamp = location.dt;
-        let date = new Date(timestamp * 1000);
+        console.log(location.list[0].dt);
+        console.log(location.list[0].dt_txt);
+
+        // intergrer pour les 5 dates suivantes
+
+        let dateinput = Date.now();
+        let date = new Date(dateinput * 1000);
         
         let options = { weekday: 'short', year: '2-digit', month: '2-digit', day: '2-digit'/*, hour: '2-digit', minute: '2-digit', second: '2-digit'*/ };
         let dateoutput = date.toLocaleDateString('fr-FR', options);
         
 
-        // intergrer pour les 5 dates suivantes
     const btn2 = document.createElement("button");
     btn2.textContent = 'Push me again!';
 
@@ -72,7 +76,9 @@ fetchforecast()
             divfuturdate.className = 'divfuturdate';
             divfuturdate.textContent = `${element}`;
             sectionforecast.appendChild(divfuturdate)
-
+        });
+    });
+///////////////////////////////////////////////////////////////////////////////////////////
         //     fetchfuturdate = () => fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${enteredcity},${enteredabbrevcount}&lat=${enteredlatitude}&lon=${enteredlongitude}&dt=${element}&units=metric&lang=fr&APPID=46181bfe81ea32a25340c82f0d82c3df`);
         // // const fetchName = () => fetch(`https://api.openweathermap.org/data/2.5/weather?q=${enteredcity},${enteredabbrevcount}&lat=${enteredlatitude}&lon=${enteredlongitude}&units=metric&lang=fr&APPID=${API key}`);
         // fetchfuturdate()
@@ -80,8 +86,6 @@ fetchforecast()
         //     .then((futurdate) => {        
         //         console.log(futurdate);
         //         console.log();
-                 });
-                 });
 
 
 
@@ -100,17 +104,27 @@ fetchforecast()
 
 
 
-        cityoutput.textContent =  location.name + ","+ location.sys.country;
+        cityoutput.textContent =  location.city.name + ","+ location.city.country;
         datenow.textContent = dateoutput;
-        latitudeoutput.textContent = "Lat: " + location.coord.lat+"°";
-        longitudeoutput.textContent = "Long: " + location.coord.lon+"°";
-        temp.textContent = "Temp: " + parseInt(location.main.temp)+"°C";
-        temp_min.textContent = "Temp min: " + parseInt(location.main.temp_min)+"°C";
-        temp_max.textContent = "Temp max: " + parseInt(location.main.temp_max)+"°C";
-        humidity.textContent = "Humidity: " + parseInt(location.main.humidity)+"%";
-        description.textContent = "Description: " + location.weather[0].description;
-        
+        latitudeoutput.textContent = "Lat: " + location.city.coord.lat+"°";
+        longitudeoutput.textContent = "Long: " + location.city.coord.lon+"°";
+        temp.textContent = "Temp: " + parseInt(location.list[0].main.temp)+"°C";
+        temp_min.textContent = "Temp min: " + parseInt(location.list[0].main.temp_min)+"°C";
+        temp_max.textContent = "Temp max: " + parseInt(location.list[0].main.temp_min)+"°C";
+        humidity.textContent = "Humidity: " + parseInt(location.list[0].main.humidity)+"%";
+        description.textContent = "Description: " + location.list[0].weather[0].description;
 
+
+        // console.log(sectionforecast);
+        // console.log(cityoutput);
+        // console.log(datenow);
+        // console.log(latitudeoutput);
+        // console.log(longitudeoutput);
+        // console.log(temp);
+        // console.log(temp_min);
+        // console.log(temp_max);
+        // console.log(humidity);
+        // console.log(description)
 
         
 
