@@ -39,52 +39,49 @@ btn1.addEventListener("click", function () {
     const enteredlatitude = latitudeinput.value;
     
 
-const fetchforecast = () => fetch(`https://api.openweathermap.org/data/2.5/weather?q=${enteredcity},${enteredabbrevcount}&lat=${enteredlatitude}&lon=${enteredlongitude}&units=metric&lang=fr&APPID=46181bfe81ea32a25340c82f0d82c3df`);
-// const fetchName = () => fetch(`https://api.openweathermap.org/data/2.5/weather?q=${enteredcity},${enteredabbrevcount}&lat=${enteredlatitude}&lon=${enteredlongitude}&units=metric&lang=fr&APPID=${API key}`);
+const fetchforecast = () => fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${enteredcity},${enteredabbrevcount}&lat=${enteredlatitude}&lon=${enteredlongitude}&units=metric&lang=fr&APPID=46181bfe81ea32a25340c82f0d82c3df`);
+// const fetchName = () => fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${enteredcity},${enteredabbrevcount}&lat=${enteredlatitude}&lon=${enteredlongitude}&units=metric&lang=fr&APPID=${API key}`);
 fetchforecast()
     .then((response) => response.json())
     .then((location) => {        
         console.log(location);
-        console.log(location.dt);
-
         
-
         let timestamp = location.dt;
         let date = new Date(timestamp * 1000);
         
         let options = { weekday: 'short', year: '2-digit', month: '2-digit', day: '2-digit'/*, hour: '2-digit', minute: '2-digit', second: '2-digit'*/ };
         let dateoutput = date.toLocaleDateString('fr-FR', options);
         
-        console.log(dateoutput);
 
-// intergrer pour les 5 dates suivantes
-    const btn2 = document.createElement("button");
-    btn2.textContent = 'Push me again!';
+        // intergrer pour les 5 dates suivantes
+    // const btn2 = document.createElement("button");
+    // btn2.textContent = 'Push me again!';
 
     
-    btn2.addEventListener("click", function () {
-        const futurday = [];
-        for (let i = 0; i < 5; i++) {
+    // btn2.addEventListener("click", function () {
+    //     const futurday = [];
+    //     for (let i = 0; i < 5; i++) {
 
-        let nextday = Date.now(dateoutput) / 1000 + 86400 * i;
-        futurday.push(nextday);
-        }
+    //     let nextday = Date.now(dateoutput) / 1000 + 86400 * i;
+    //     futurday.push(nextday);
+    //     }
 
-        futurday.forEach(function(element) {
-            console.log(`${element}`);
-            let divfuturdate = document.createElement('div');
-            divfuturdate.className = 'divfuturdate';
-            divfuturdate.textContent = `${element}`;
-            // sectionforecast.appendChild(divfuturdate)
-        const fetchfuturdate = () => fetch(`https://api.openweathermap.org/data/2.5/weather?q=${enteredcity},${enteredabbrevcount}&lat=${enteredlatitude}&lon=${enteredlongitude}&dt=${element}&units=metric&lang=fr&APPID=46181bfe81ea32a25340c82f0d82c3df`);
-        // const fetchName = () => fetch(`https://api.openweathermap.org/data/2.5/weather?q=${enteredcity},${enteredabbrevcount}&lat=${enteredlatitude}&lon=${enteredlongitude}&units=metric&lang=fr&APPID=${API key}`);
-        fetchfuturdate()
-            .then((response) => response.json())
-            .then((futurdate) => {        
-                console.log(futurdate);
-                console.log();
-                });
-                });
+    //     futurday.forEach(function(element) {
+    //         console.log(`${element}`);
+    //         let divfuturdate = document.createElement('div');
+    //         divfuturdate.className = 'divfuturdate';
+    //         divfuturdate.textContent = `${element}`;
+    //         sectionforecast.appendChild(divfuturdate)
+
+            // fetchfuturdate = () => fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${enteredcity},${enteredabbrevcount}&lat=${enteredlatitude}&lon=${enteredlongitude}&dt=${element}&units=metric&lang=fr&APPID=46181bfe81ea32a25340c82f0d82c3df`);
+    //     // const fetchName = () => fetch(`https://api.openweathermap.org/data/2.5/weather?q=${enteredcity},${enteredabbrevcount}&lat=${enteredlatitude}&lon=${enteredlongitude}&units=metric&lang=fr&APPID=${API key}`);
+    //     fetchfuturdate()
+    //         .then((response) => response.json())
+    //         .then((futurdate) => {        
+    //             console.log(futurdate);
+    //             console.log();
+    //             });
+                // });
 
 
 
@@ -143,4 +140,4 @@ fetchforecast()
     // });
     
 });
-});
+// });
