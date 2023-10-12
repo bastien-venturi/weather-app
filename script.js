@@ -73,9 +73,17 @@ btn1.addEventListener("click", function () {
       btn2.className = "btn2";
       btn2.textContent = "Push me again!";
 
+      const savedCity = localStorage.getItem('savedCity');
+
+      if (savedCity) {
+        cityinput.value = savedCity;
+      }
+
       btn2.addEventListener("click", function () {
         const diplayfururdays = document.createElement("div");
         diplayfururdays.className = "diplayfururdays";
+
+        localStorage.setItem('savedCity', enteredcity);
 
 
 //////////////////////////// intergrer pour les 5 dates suivantes/////////////////
