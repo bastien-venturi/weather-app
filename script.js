@@ -281,8 +281,3 @@ btn1.addEventListener("click", function () {
   // });
   ///////////////////////////////////////////////////////////////////////
 });
-
-const enteredabbrevcount = "";
-const enteredcity = "";
-const enteredlongitude = "";
-const enteredlatitude = "";
