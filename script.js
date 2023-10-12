@@ -1,35 +1,41 @@
 let main = document.querySelector("main");
 let sectioninput = document.createElement("section");
 sectioninput.className = "input";
-main.appendChild(sectioninput);
+
 
 let abbrevcountinput = document.createElement("input");
 abbrevcountinput.type = "text";
 abbrevcountinput.id = "abbrevcountinput";
 abbrevcountinput.placeholder = "Enter abbreviation country";
-sectioninput.appendChild(abbrevcountinput);
+
 
 let cityinput = document.createElement("input");
 cityinput.type = "text";
 cityinput.id = "cityinput";
 cityinput.placeholder = "Enter city";
-sectioninput.appendChild(cityinput);
+
 
 let longitudeinput = document.createElement("input");
 longitudeinput.type = "number";
 longitudeinput.id = "longitudeinput";
 longitudeinput.placeholder = "Enter longitude";
-sectioninput.appendChild(longitudeinput);
+
 
 let latitudeinput = document.createElement("input");
 latitudeinput.type = "*number";
 latitudeinput.id = "latitudeinput";
 latitudeinput.placeholder = "Enter latitude";
-sectioninput.appendChild(latitudeinput);
+
 
 let btn1 = document.createElement("button");
 btn1.className = "btn1";
 btn1.textContent = "Push me!";
+
+main.appendChild(sectioninput);
+sectioninput.appendChild(abbrevcountinput);
+sectioninput.appendChild(longitudeinput);
+sectioninput.appendChild(latitudeinput);
+sectioninput.appendChild(cityinput);
 sectioninput.appendChild(btn1);
 
 btn1.addEventListener("click", function () {
@@ -181,7 +187,7 @@ btn1.addEventListener("click", function () {
         
 
         const divContainer = document.createElement("div");
-        divContainer.style.height = "800px";
+       
 
         divContainer.appendChild(newCanvas);
         sectionchart.appendChild(divContainer);
