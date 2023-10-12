@@ -38,7 +38,6 @@ btn1.addEventListener("click", function () {
   const enteredlongitude = longitudeinput.value;
   const enteredlatitude = latitudeinput.value;
 
-
   const fetchforecast = () =>
     fetch(
       `https://api.openweathermap.org/data/2.5/forecast?q=${enteredcity},${enteredabbrevcount}&dt=${enteredcity}&lat=${enteredlatitude}&lon=${enteredlongitude}&units=metric&lang=fr&APPID=46181bfe81ea32a25340c82f0d82c3df`
@@ -47,7 +46,7 @@ btn1.addEventListener("click", function () {
   fetchforecast()
     .then((response) => response.json())
     .then((location) => {
-      console.log(location);
+
 //////////////////////////// intergrer date/////////////////
 
       let dateinput = location.list[0].dt;
@@ -71,13 +70,12 @@ btn1.addEventListener("click", function () {
         const diplayfururdays = document.createElement("div");
         diplayfururdays.className = "diplayfururdays";
 
-
 //////////////////////////// intergrer pour les 5 dates suivantes/////////////////
 
       const numb5dates = [];
 
-      let divinterg5dates = document.createElement('div');
-      divinterg5dates.className = 'divinterg5dates';
+                let divinterg5dates = document.createElement('div');
+        divinterg5dates.className = 'divinterg5dates';
 
       for (let a = 0; a <= 32; a += 8) {
         numb5dates.push(a);
@@ -94,11 +92,6 @@ btn1.addEventListener("click", function () {
         let div5datesdate = document.createElement("ul");
         let div5datestemp = document.createElement("li");
         let div5datesdescription = document.createElement("li");
-        let div5datesincon = document.createElement("img");
-        let icon5dates = location.list[element].weather[0].icon;
-        let icon5datessrc = `https://openweathermap.org/img/wn/${icon5dates}@2x.png`;
-
-        console.log(icon5dates);
 
         let div5datesdatetime = document.createElement('span');
         div5datesdatetime.textContent = location.list[element].dt;
@@ -119,10 +112,7 @@ btn1.addEventListener("click", function () {
 
         div5datesdate.textContent = div5datesdateformat;        
         div5datestemp.textContent = "Temp: " + parseInt(location.list[element].main.temp) + "°C";
-        div5datesdescription.textContent = location.list[element].weather[0].description;
-        div5datesincon.src = icon5datessrc;
-        div5datesincon.alt = location.list[element].weather[0].main;
-
+        div5datesdescription.textContent = location.list[element].weather[0].description;      
         
         sectionforecast.appendChild(divinterg5dates);
         divinterg5dates.appendChild(div5dates);      
@@ -130,7 +120,6 @@ btn1.addEventListener("click", function () {
         div5dates.appendChild(div5datesdate);
         div5dates.appendChild(div5datestemp);
         div5dates.appendChild(div5datesdescription);
-        div5datesdescription.appendChild(div5datesincon);
       });
     
         /////////////////////////  CHART  //////////////////////////////////////////////
@@ -174,14 +163,14 @@ btn1.addEventListener("click", function () {
           axetime.push(timechartformat);
         });
 
-/////////////////////////  CHART integration  //////////////////////////////////////////////
+        /////////////////////////  CHART integration  //////////////////////////////////////////////
 
         const newCanvas = document.createElement("canvas");
         newCanvas.id = "myChart";
-        
+        newCanvas.width = 800;
 
         const divContainer = document.createElement("div");
-        divContainer.style.height = "800px";
+        divContainer.style.width = "800px";
 
         divContainer.appendChild(newCanvas);
         sectionchart.appendChild(divContainer);
@@ -215,8 +204,6 @@ btn1.addEventListener("click", function () {
         });
       });
 
-
-
       let footer = document.querySelector('footer');
       let sectionforecast = document.createElement("section");
       sectionforecast.className = "sectioncity";
@@ -231,11 +218,6 @@ btn1.addEventListener("click", function () {
       let temp_max = document.createElement("li");
       let humidity = document.createElement("li");
       let description = document.createElement("li");
-      let iconinput = document.createElement("img");
-      let icon = location.list[0].weather[0].icon;
-      let iconsrc = "https://openweathermap.org/img/wn/"+icon+"@2x.png";
-      console.log(icon);
-      console.log(iconsrc);
 
       cityoutput.textContent = location.city.name + "," + location.city.country;
       datenow.textContent = dateoutput;
@@ -246,9 +228,6 @@ btn1.addEventListener("click", function () {
       temp_max.textContent ="Temp max: " + parseInt(location.list[0].main.temp_max) + "°C";
       humidity.textContent ="Humidity: " + parseInt(location.list[0].main.humidity) + "%";
       description.textContent ="Description: " + location.list[0].weather[0].description;
-      iconinput.src = iconsrc;
-      iconinput.alt = location.list[0].weather[0].main;
-
 
       ///////////////////////////////////////////////////////////////////////
       // while (sectionforecast.firstChild) {
@@ -272,7 +251,6 @@ btn1.addEventListener("click", function () {
       sectionforecast.appendChild(temp_max);
       sectionforecast.appendChild(humidity);
       sectionforecast.appendChild(description);
-      description.appendChild(iconinput);
       sectionforecast.appendChild(btn2);
     });
     ///////////////////////////////////////////////////////////////////////
@@ -282,7 +260,5 @@ btn1.addEventListener("click", function () {
   ///////////////////////////////////////////////////////////////////////
 });
 
-const enteredabbrevcount = "";
-const enteredcity = "";
-const enteredlongitude = "";
-const enteredlatitude = "";
+
+

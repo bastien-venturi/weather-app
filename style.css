@@ -2,3 +2,18 @@
     display: flex;
     flex-direction: column;
 }
+.diplayfururdays{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.divinterg5dates{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+.sectioncity{
+    display: flex;
+    flex-direction: column;
+}
